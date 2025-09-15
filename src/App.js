@@ -6,7 +6,8 @@ import SingleProduct, {
 } from "./components/Product";
 import Product_2 from "./components/Product_2";
 import Product_3 from "./components/Product_3";
-
+import Employee from "./components/Employee";
+import { useState } from "react";
 function App() {
   const products = [
     {
@@ -46,6 +47,91 @@ function App() {
     },
   ];
 
+  const employees = [
+    {
+      id: "001",
+      name: "James Smith",
+      salary: 95000,
+      isActive: true,
+    },
+    {
+      id: "002",
+      name: "Robert Johnson",
+      salary: 110000,
+      isActive: true,
+    },
+    {
+      id: "003",
+      name: "Emily Daves",
+      salary: 90000,
+      isActive: true,
+    },
+    {
+      id: "004",
+      name: "Joe Doe",
+      salary: 87000,
+      isActive: true,
+    },
+    {
+      id: "005",
+      name: "Maira Silva",
+      salary: 45000,
+      isActive: true,
+    },
+    {
+      id: "006",
+      name: "Paulo Arueira",
+      salary: 15000,
+      isActive: false,
+    },
+  ];
+
+  const handerClick = () => {
+    console.log("button acionado 1");
+  };
+
+  const handerClick2 = () => {
+    console.log("button acionado 2");
+  };
+
+  const handerClick3 = (params) => {
+    console.log(params);
+  };
+
+  const calculateFactorial = (num) => {
+    let factorial = 1;
+    for (let i = 1; i <= num; i++) {
+      factorial *= i;
+    }
+    console.log(factorial);
+  };
+
+  const [contador, setContador] = useState(0);
+
+  function callbackFn(prevState) {
+    console.log(prevState);
+    return prevState + 1;
+  }
+
+  //const incrementCounter = () => {
+  // setContador(contador + 1);
+  // setContador(contador + 1);
+  // setContador(contador + 1);
+  //console.log(iw);
+  //};
+
+  // const incrementCounter = () => {
+  //   setContador(callbackFn);
+  //   setContador(callbackFn);
+  //   setContador(callbackFn);
+  // };
+
+  const incrementCounter = () => {
+    setContador((prevState) => prevState + 1);
+    setContador((prevState) => prevState + 1);
+    setContador((prevState) => prevState + 1);
+  };
+
   // let b = "World_b";
   // let a = <h1>Hello World</h1>;
   // let c = (
@@ -62,6 +148,18 @@ function App() {
       <div className="product-list">
         {products.map((product) => (
           <Product_3 product={product} key={product.code} />
+        ))}
+      </div>
+      <button onClick={handerClick}>Click Me 1</button>
+      <button onClick={() => handerClick2()}>Click Me 2</button>
+      <button onClick={() => console.log("Button acionado 3")}>
+        Click Me 3
+      </button>
+      <button onClick={() => handerClick3("Hello World!")}>Click Me 4</button>
+      {/* _____________________________________________________________________________*/}
+      <div className="product-list">
+        {employees.map((employee) => (
+          <Employee employee={employee} key={employee.id} />
         ))}
       </div>
       {/* _____________________________________________________________________________*/}
@@ -81,6 +179,15 @@ function App() {
       {/* <ProductName/> Não funciona. Não é uma função*/}
       {/* <div>{a}</div> Não é uma função */}
       {/* <div>{c}</div> */}
+      {/* _____________________________________________________________________________*/}
+      <div>
+        <button onClick={() => calculateFactorial(4)}>Calcular Fatorial</button>
+      </div>
+      {/* _____________________________________________________________________________*/}
+      <div className="App">
+        <h1>{contador}</h1>
+        <button onClick={incrementCounter}>Increment</button>
+      </div>
       {/* _____________________________________________________________________________*/}
     </>
   );
