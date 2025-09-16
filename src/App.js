@@ -107,6 +107,8 @@ function App() {
   };
 
   const [contador, setContador] = useState(0);
+  const [productName, setProductName] = useState("Orange");
+  const [show, setShow] = useState(true);
 
   function callbackFn(prevState) {
     console.log(prevState);
@@ -129,9 +131,17 @@ function App() {
   const incrementCounter = () => {
     setContador((prevState) => prevState + 1);
     setContador((prevState) => prevState + 1);
-    setContador((prevState) => prevState + 1);
   };
 
+  const handleProductNameChange = (params) => {
+    setProductName(params);
+  };
+
+  const toggleSection = () => {
+    setShow(!show);
+  };
+
+  console.log(show);
   // let b = "World_b";
   // let a = <h1>Hello World</h1>;
   // let c = (
@@ -188,6 +198,21 @@ function App() {
         <h1>{contador}</h1>
         <button onClick={incrementCounter}>Increment</button>
       </div>
+      {/* _____________________________________________________________________________*/}
+
+      <button onClick={toggleSection}>{show ? "Hide" : "Show"}</button>
+      {show && (
+        <>
+          <h1>{productName}</h1>
+          <button onClick={() => handleProductNameChange("Orange")}>
+            Orange
+          </button>
+          <button onClick={() => handleProductNameChange("Apple")}>
+            Apple
+          </button>
+        </>
+      )}
+
       {/* _____________________________________________________________________________*/}
     </>
   );
