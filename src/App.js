@@ -109,6 +109,7 @@ function App() {
   const [contador, setContador] = useState(0);
   const [productName, setProductName] = useState("Orange");
   const [show, setShow] = useState(true);
+  const [arr, setArr] = useState([]);
 
   function callbackFn(prevState) {
     console.log(prevState);
@@ -131,6 +132,17 @@ function App() {
   const incrementCounter = () => {
     setContador((prevState) => prevState + 1);
     setContador((prevState) => prevState + 1);
+    setContador((prevState) => prevState + 1);
+    setArr((prevState) => [...prevState, contador]);
+  };
+
+  const removeFromArr = () => {
+    setArr((prevState) => prevState.slice(0, -1));
+  };
+
+  const decrementCounter = () => {
+    setArr(...arr, contador);
+    //setArr((prevState) => [...prevState, contador]);
   };
 
   const handleProductNameChange = (params) => {
@@ -197,6 +209,7 @@ function App() {
       <div className="App">
         <h1>{contador}</h1>
         <button onClick={incrementCounter}>Increment</button>
+        <button onClick={removeFromArr}>Remove</button>
       </div>
       {/* _____________________________________________________________________________*/}
 
@@ -213,6 +226,10 @@ function App() {
         </>
       )}
 
+      {/* _____________________________________________________________________________*/}
+      {arr.map((item, index) => (
+        <h1 key={index}>{item}</h1>
+      ))}
       {/* _____________________________________________________________________________*/}
     </>
   );
